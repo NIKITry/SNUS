@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 124
+  controlID: 30
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 494
     height: 1307
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -536,9 +536,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 370.99802, y: 100.6715, z: 169.15468}
+    m_Target: {x: 372.1896, y: 103.93914, z: 164.80286}
     speed: 2
-    m_Value: {x: 370.99802, y: 100.6715, z: 169.15468}
+    m_Value: {x: 372.1896, y: 103.93914, z: 164.80286}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -585,13 +585,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.018336516, y: 0.90737, z: -0.0420836, w: -0.41857612}
+    m_Target: {x: 0.026913637, y: 0.9693196, z: 0.11730466, w: -0.21581338}
     speed: 2
-    m_Value: {x: -0.01833071, y: 0.9070827, z: -0.042070273, w: -0.4184436}
+    m_Value: {x: 0.026905023, y: 0.9690093, z: 0.11726711, w: -0.2157443}
   m_Size:
-    m_Target: 5.5564094
+    m_Target: 6.7912583
     speed: 2
-    m_Value: 5.5564094
+    m_Value: 6.7912583
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -646,24 +646,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 32}
-      m_SelectedIDs: c863feff
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a055feffa455feffa855feff3056feff3456feff3856feff6c56feff7056feff7656feff265cfeff90b7feff043cffff124fffff164fffff1a4fffffa24fffffa64fffffaa4fffffde4fffffe24fffffeae9ffff1a690000b4690000b4700000ca7500007a870000
+      m_ExpandedIDs: d83dfffffc9effff20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: new_weapoon_1
-        m_OriginalName: new_weapoon_1
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -17508
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -938,22 +938,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations/Animator Controllers/shooting/new
+    - Assets/3D_models/Man/COD_MW2019_Barkov/young/AK-47/body
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Animations/Animator Controllers/shooting/new
+  - Assets/3D_models/Man/COD_MW2019_Barkov/young/AK-47/body
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\game\github desktop game\SNUS\GameArmy
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6cb80000
-    m_LastClickedID: 47212
-    m_ExpandedIDs: 00000000c2a90000c4a90000c6a90000c8a90000caa90000cca90000cea90000d0a90000d4a90000a8aa0000f0aa000006ab000064020400660204008e020400
+    scrollPos: {x: 0, y: 258}
+    m_SelectedIDs: 78ab0000
+    m_LastClickedID: 43896
+    m_ExpandedIDs: 00000000cea40000d0a40000d2a40000d4a40000d6a40000d8a40000daa40000dca40000dea40000e0a40000e2a40000e4a40000e6a40000e8a40000eaa4000006a60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -981,7 +981,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c2a90000c4a90000c6a90000c8a90000caa90000cca90000cea90000d0a90000d2a90000d4a90000
+    m_ExpandedIDs: 00000000cea40000d0a40000d2a40000d4a40000d6a40000d8a40000daa40000dca40000dea40000e0a40000e2a40000e4a40000e6a40000e8a40000eaa40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1009,7 +1009,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000090d60000c42408006c6b0300806c030098a40000368e0000000000007ab0000014b00000
+    m_ExpandedInstanceIDs: c623000090d60000c42408006c6b0300806c030098a40000368e0000000000007ab0000014b00000a4a90000eaab0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
