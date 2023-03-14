@@ -10,6 +10,8 @@ public class player : MonoBehaviour
 	public bool walking;
 	public Transform playerTrans;
 
+	
+
 
 	void FixedUpdate()
 	{
@@ -53,6 +55,8 @@ public class player : MonoBehaviour
 		if (Input.GetKey(KeyCode.A))
 		{
 			playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
+
+
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
