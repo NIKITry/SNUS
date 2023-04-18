@@ -9,62 +9,66 @@ public class player : MonoBehaviour
 	public float w_speed, wb_speed, olw_speed, rn_speed, ro_speed;
 	public bool walking;
 	public Transform playerTrans;
+	public float distToGround = 1f;
+
 
 	
 
 
 	void FixedUpdate()
 	{
-		if (Input.GetKey(KeyCode.W))
+		if (isGrounded && Input.GetKey(KeyCode.W))
 		{
 			playerRigid.velocity = transform.forward * w_speed * Time.deltaTime;
 		}
-		if (Input.GetKey(KeyCode.S))
+		if (isGrounded && Input.GetKey(KeyCode.S))
 		{
 			playerRigid.velocity = -transform.forward * wb_speed * Time.deltaTime;
 		}
+
+		GroundCheck();
 	}
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.W))
+		if (isGrounded && Input.GetKeyDown(KeyCode.W))
 		{
 			playerAnim.SetTrigger("walk");
 			playerAnim.ResetTrigger("idle");
 			walking = true;
 			//steps1.SetActive(true);
 		}
-		if (Input.GetKeyUp(KeyCode.W))
+		if (isGrounded && Input.GetKeyUp(KeyCode.W))
 		{
 			playerAnim.ResetTrigger("walk");
 			playerAnim.SetTrigger("idle");
 			walking = false;
 			//steps1.SetActive(false);
 		}
-		if (Input.GetKeyDown(KeyCode.S))
+		if (isGrounded && Input.GetKeyDown(KeyCode.S))
 		{
 			playerAnim.SetTrigger("walkback");
 			playerAnim.ResetTrigger("idle");
 			//steps1.SetActive(true);
 		}
-		if (Input.GetKeyUp(KeyCode.S))
+		if (isGrounded && Input.GetKeyUp(KeyCode.S))
 		{
 			playerAnim.ResetTrigger("walkback");
 			playerAnim.SetTrigger("idle");
 			//steps1.SetActive(false);
 		}
-		if (Input.GetKey(KeyCode.A))
+		if (isGrounded && Input.GetKey(KeyCode.A))
 		{
 			playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
 
 
 		}
-		if (Input.GetKey(KeyCode.D))
+		if (isGrounded && Input.GetKey(KeyCode.D))
 		{
 			playerTrans.Rotate(0, ro_speed * Time.deltaTime, 0);
 		}
 		if (walking == true)
 		{
-			if (Input.GetKeyDown(KeyCode.LeftShift))
+			if (isGrounded && Input.GetKeyDown(KeyCode.LeftShift))
 			{
 				//steps1.SetActive(false);
 				//steps2.SetActive(true);
@@ -72,7 +76,7 @@ public class player : MonoBehaviour
 				playerAnim.SetTrigger("run");
 				playerAnim.ResetTrigger("walk");
 			}
-			if (Input.GetKeyUp(KeyCode.LeftShift))
+			if (isGrounded && Input.GetKeyUp(KeyCode.LeftShift))
 			{
 				//steps1.SetActive(true);
 				//steps2.SetActive(false);
@@ -80,6 +84,17 @@ public class player : MonoBehaviour
 				playerAnim.ResetTrigger("run");
 				playerAnim.SetTrigger("walk");
 			}
+		}
+	}
+
+	public bool isGrounded = false;
+
+	void GroundCheck () {
+
+		if(Physics.Raycast(transform.position, Vector2.down, distToGround + 0.05f)) {
+			isGrounded = true;
+		} else {
+			isGrounded = false;
 		}
 	}
 }
