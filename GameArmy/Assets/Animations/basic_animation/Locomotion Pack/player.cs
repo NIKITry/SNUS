@@ -30,45 +30,45 @@ public class player : MonoBehaviour
 	}
 	void Update()
 	{
-		if (isGrounded && Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(KeyCode.W))
 		{
 			playerAnim.SetTrigger("walk");
 			playerAnim.ResetTrigger("idle");
 			walking = true;
 			//steps1.SetActive(true);
 		}
-		if (isGrounded && Input.GetKeyUp(KeyCode.W))
+		if (Input.GetKeyUp(KeyCode.W))
 		{
 			playerAnim.ResetTrigger("walk");
 			playerAnim.SetTrigger("idle");
 			walking = false;
 			//steps1.SetActive(false);
 		}
-		if (isGrounded && Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKeyDown(KeyCode.S))
 		{
 			playerAnim.SetTrigger("walkback");
 			playerAnim.ResetTrigger("idle");
 			//steps1.SetActive(true);
 		}
-		if (isGrounded && Input.GetKeyUp(KeyCode.S))
+		if (Input.GetKeyUp(KeyCode.S))
 		{
 			playerAnim.ResetTrigger("walkback");
 			playerAnim.SetTrigger("idle");
 			//steps1.SetActive(false);
 		}
-		if (isGrounded && Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.A))
 		{
 			playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
 
 
 		}
-		if (isGrounded && Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.D))
 		{
 			playerTrans.Rotate(0, ro_speed * Time.deltaTime, 0);
 		}
 		if (walking == true)
 		{
-			if (isGrounded && Input.GetKeyDown(KeyCode.LeftShift))
+			if (Input.GetKeyDown(KeyCode.LeftShift))
 			{
 				//steps1.SetActive(false);
 				//steps2.SetActive(true);
@@ -76,7 +76,7 @@ public class player : MonoBehaviour
 				playerAnim.SetTrigger("run");
 				playerAnim.ResetTrigger("walk");
 			}
-			if (isGrounded && Input.GetKeyUp(KeyCode.LeftShift))
+			if (Input.GetKeyUp(KeyCode.LeftShift))
 			{
 				//steps1.SetActive(true);
 				//steps2.SetActive(false);
