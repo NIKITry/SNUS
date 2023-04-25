@@ -8,18 +8,18 @@ public class switchcontroller : MonoBehaviour
 {
     public GameObject firstPersonController;
     public GameObject thirdPersonController;
-    float switchDelay = 0.12f;
+    //float switchDelay = 0.12f;
 
 
     void FixedUpdate()
     {
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKeyUp(KeyCode.O))
         {
 
-            switchDelay -= Time.deltaTime;
-            if (switchDelay <= 0)
-            {
+            //switchDelay -= Time.deltaTime;
+            //if (switchDelay <= 0)
+            //{
                 firstPersonController.SetActive(!firstPersonController.activeSelf);
                 thirdPersonController.SetActive(!thirdPersonController.activeSelf);
 
@@ -33,8 +33,8 @@ public class switchcontroller : MonoBehaviour
                     thirdPersonController.transform.position = firstPersonController.transform.position;
                     thirdPersonController.transform.rotation = firstPersonController.transform.rotation;
                 }
-                switchDelay = 0.12f;
-            }
+            //    switchDelay = 0.12f;
+            //}
 
         }
     }

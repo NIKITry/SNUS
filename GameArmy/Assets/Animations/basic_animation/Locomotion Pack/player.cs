@@ -17,16 +17,22 @@ public class player : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		GroundCheck();
 		if (isGrounded && Input.GetKey(KeyCode.W))
 		{
 			playerRigid.velocity = transform.forward * w_speed * Time.deltaTime;
+		} else
+        {
+			GroundCheck();
 		}
 		if (isGrounded && Input.GetKey(KeyCode.S))
 		{
 			playerRigid.velocity = -transform.forward * wb_speed * Time.deltaTime;
+		} else
+        {
+			GroundCheck();
 		}
 
-		GroundCheck();
 	}
 	void Update()
 	{
@@ -76,18 +82,18 @@ public class player : MonoBehaviour
 				playerAnim.SetTrigger("run");
 				playerAnim.ResetTrigger("walk");
 			}
-			if (Input.GetKeyUp(KeyCode.LeftShift))
-			{
-				//steps1.SetActive(true);
-				//steps2.SetActive(false);
-				w_speed = olw_speed;
-				playerAnim.ResetTrigger("run");
-				playerAnim.SetTrigger("walk");
-			}
-		}
-	}
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                //steps1.SetActive(true);
+                //steps2.SetActive(false);
+                w_speed = olw_speed;
+                playerAnim.ResetTrigger("run");
+                playerAnim.SetTrigger("walk");
+            }
+        }
+    }
 
-	public bool isGrounded = false;
+	public bool isGrounded = true;
 
 	void GroundCheck () {
 
