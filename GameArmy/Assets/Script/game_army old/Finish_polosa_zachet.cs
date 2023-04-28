@@ -11,7 +11,6 @@ public class Finish_polosa_zachet : MonoBehaviour
     public Text Text_time;
     public Transform spawn;
     public GameObject rezult;
-    public TeleportNextScene Check;
     void Start()
     {
         
@@ -56,7 +55,6 @@ public class Finish_polosa_zachet : MonoBehaviour
             GameObject timerText;
             timerText = GameObject.Find("timer");
             timerText.gameObject.SetActive(false);
-            Check.QuestCheck[0] = true;
             gameObject.SetActive(false);
             Text_time.text = fin_min.ToString("D2") + ":" + fin_sec.ToString("D2");
         }
@@ -103,6 +101,8 @@ public class Finish_polosa_zachet : MonoBehaviour
         rezult.SetActive(false);
         gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Achievements achievement = FindObjectOfType<Achievements>();
+        achievement.showAchieve("Пройти \n полосу \n препятствий", 3);
     }
     private void OnTriggerExit(Collider other)
     {

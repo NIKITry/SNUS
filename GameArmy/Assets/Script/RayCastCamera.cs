@@ -55,6 +55,8 @@ public class RayCastCamera : MonoBehaviour
             trigger_ojeda.SetActive(false);
 
             room_KID.SetActive(true);
+            Achievements achievement = FindObjectOfType<Achievements>();
+            achievement.showAchieve("Получить \n одежду", 1);
         }
     }
 

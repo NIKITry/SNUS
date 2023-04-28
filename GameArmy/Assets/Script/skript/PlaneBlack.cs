@@ -28,7 +28,7 @@ public class PlaneBlack : MonoBehaviour
             if (AlphaImage.color.a < 0.1)
             {
                 Object.SetActive(true);
-                FPS.mouseSensitivity = 0;
+                FPS.setFreeze(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
@@ -43,7 +43,7 @@ public class PlaneBlack : MonoBehaviour
         GameObject script;
         script = GameObject.Find("MainCanvas");
         script.GetComponent<Cursor_StarMain>().enabled = false;
-        FPS.mouseSensitivity = 2;
+        FPS.setFreeze(false);
         PressStart = true;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().enabled = true;

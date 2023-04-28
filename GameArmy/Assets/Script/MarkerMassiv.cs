@@ -9,8 +9,6 @@ public class MarkerMassiv : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        Debug.Log(Markers.Length);
         for(int i  = 1; i < Markers.Length; i++)
         {
              Markers[i].SetActive(false);

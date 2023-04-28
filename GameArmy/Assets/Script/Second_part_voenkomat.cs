@@ -24,7 +24,7 @@ public class Second_part_voenkomat : MonoBehaviour
         if (col.tag == "Player")
         {
             enter = true;
-            FPS.mouseSensitivity = 0;
+            FPS.setFreeze(true);
             Instr.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -37,7 +37,7 @@ public class Second_part_voenkomat : MonoBehaviour
    
         enter = false;
         Instr.SetActive(false);
-        FPS.mouseSensitivity = 2;
+        FPS.setFreeze(false);
         Cursor.lockState = CursorLockMode.Locked;
         PolosaQuest.GetComponent<SphereCollider>().enabled = true;
         PolosaQuest.transform.GetChild(0).gameObject.SetActive(true);

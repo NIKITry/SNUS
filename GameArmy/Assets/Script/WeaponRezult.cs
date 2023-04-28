@@ -8,7 +8,6 @@ public class WeaponRezult : MonoBehaviour
     public GameObject rezult, rezult_text, rezult_text_finish, barer;
     public Text six, seven, eight, nine, ten, sum;
     public GreenTarget GreenTarget;
-    public TeleportNextScene Check;
     bool enter;
 
     // Start is called before the first frame update
@@ -29,12 +28,12 @@ public class WeaponRezult : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            six.text = "попаданий в '6': " + GreenTarget.six;
-            seven.text = "попаданий в '7': " + GreenTarget.sev;
-            eight.text = "попаданий в '8': " + GreenTarget.vos;
-            nine.text = "попаданий в '9': " + GreenTarget.nine;
-            ten.text = "попаданий в '10': " + GreenTarget.ten;
-            sum.text = GreenTarget.scores + " очков";
+            six.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ '6': " + GreenTarget.six;
+            seven.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ '7': " + GreenTarget.sev;
+            eight.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ '8': " + GreenTarget.vos;
+            nine.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ '9': " + GreenTarget.nine;
+            ten.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ '10': " + GreenTarget.ten;
+            sum.text = GreenTarget.scores + " пїЅпїЅпїЅпїЅпїЅ";
 
             Weapon_trigg.ammo_bool = false;
             rezult.SetActive(true);
@@ -50,9 +49,10 @@ public class WeaponRezult : MonoBehaviour
         GameObject man;
         man = GameObject.FindGameObjectWithTag("Player");
         man.GetComponent<FirstPersonController>().enabled = true;
-        Check.QuestCheck[1] = true;
         Cursor.lockState = CursorLockMode.Locked;
         barer.SetActive(false);
+        Achievements achievement = FindObjectOfType<Achievements>();
+        achievement.showAchieve("РџСЂРѕР№С‚Рё \n СЃС‚СЂРµР»РєРѕРІС‹Р№ \n РїРѕР»РёРіРѕРЅ", 4);
     }
     private void OnTriggerEnter(Collider other)
     {

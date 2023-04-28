@@ -16,7 +16,7 @@ using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
-    
+    private bool isFreezed = false;
     private Rigidbody rb;
    
     #region Camera Movement Variables
@@ -205,6 +205,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (isFreezed) return;
         GameObject man;
         man = GameObject.FindGameObjectWithTag("Player");
         #region Camera
@@ -388,6 +389,7 @@ public class FirstPersonController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isFreezed) return;
         #region Movement
 
         if (playerCanMove)
@@ -485,6 +487,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Jump()
     {
+        if (isFreezed) return;
+            
         // Adds force to the player rigidbody to jump
         if (isGrounded)
         {
@@ -493,7 +497,7 @@ public class FirstPersonController : MonoBehaviour
         }
 
         // When crouched and using toggle system, will uncrouch for a jump
-        if(isCrouched && !holdToCrouch)
+        if (isCrouched && !holdToCrouch)
         {
             Crouch();
         }
@@ -501,16 +505,17 @@ public class FirstPersonController : MonoBehaviour
 
     private void Crouch()
     {
+        if (isFreezed) return;
         // Stands player up to full height
         // Brings walkSpeed back up to original speed
-        if(isCrouched)
+        if (isCrouched)
         {
             transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
             walkSpeed /= speedReduction;
 
             isCrouched = false;
 
-          gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x,  0.75f, gameObject.transform.localScale.z);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0.75f, gameObject.transform.localScale.z);
         }
         // Crouches player down to set height
         // Reduces walkSpeed
@@ -522,6 +527,7 @@ public class FirstPersonController : MonoBehaviour
             isCrouched = true;
             gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0.5f, gameObject.transform.localScale.z);
         }
+        
     }
 
     private void HeadBob()
@@ -552,6 +558,11 @@ public class FirstPersonController : MonoBehaviour
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
+    }
+
+    public void setFreeze(bool state)
+    {
+        isFreezed = state;
     }
 }
 

@@ -28,7 +28,7 @@ public class Registration : MonoBehaviour
         if (col.tag == "Player")
         {
             enter = true;
-            FPS.mouseSensitivity = 0;
+            FPS.setFreeze(true);
             Registr.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -44,7 +44,9 @@ public class Registration : MonoBehaviour
         Fename.SetActive(true);
         enter = false;
         Registr.SetActive(false);
-        FPS.mouseSensitivity = 2;
+        FPS.setFreeze(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Achievements achievement = FindObjectOfType<Achievements>();
+        achievement.showAchieve("Зарегистрироваться", 0);
     } 
 }

@@ -26,7 +26,7 @@ public class Polosa_start : MonoBehaviour
     {
         score = 1500;
         GameObject finish_trigg;
-        finish_trigg = GameObject.Find("Финиш_зачет(trigg) ");
+        finish_trigg = GameObject.Find("finish_exam(trigg) ");
        // finish_trigg.GetComponent<Finish_polosa_zachet>().enabled = false;
         finish_trigg.SetActive(false);
         // Ochet.SetActive(false);
@@ -58,7 +58,7 @@ public class Polosa_start : MonoBehaviour
     {
         
         GameObject man;
-        if (enter == true && Input.GetKeyDown(KeyCode.E)) //отключение каммеры и включение канваса с правилами
+        if (enter == true && Input.GetKeyDown(KeyCode.E)) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             Text_start.SetActive(false);
             markerQuest.SetActive(false);
@@ -73,7 +73,7 @@ public class Polosa_start : MonoBehaviour
 
         }
 
-        if (zachet == true) // переход к зачету по полосе препядствий
+        if (zachet == true) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             for (int i = 0; i < triggers.Length; i++)
             {
@@ -87,7 +87,7 @@ public class Polosa_start : MonoBehaviour
         if (start == true)
         {
             GameObject finish_trigg;
-            finish_trigg = GameObject.Find("Финиш_зачет(trigg) ");
+            finish_trigg = GameObject.Find("finish_exam(trigg) ");
             finish_trigg.GetComponent<Finish_polosa_zachet>().enabled = true;
             zachet = false;
             Pravila.SetActive(false);
@@ -127,7 +127,7 @@ public class Polosa_start : MonoBehaviour
 
         }
 
-        if (trennirovka == true) // переход к треннировке
+        if (trennirovka == true) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             man = GameObject.FindGameObjectWithTag("Player");
             man.GetComponent<FirstPersonController>().enabled = true;
@@ -144,7 +144,7 @@ public class Polosa_start : MonoBehaviour
             }
 
         }
-        for (int i = 0; i < polosa.Length; i++) // проверка на вход в запретный триггер
+        for (int i = 0; i < polosa.Length; i++) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             if (polosa[i].enter == true)
             {

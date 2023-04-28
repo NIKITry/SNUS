@@ -7,7 +7,7 @@ public class Marker : MonoBehaviour
     public MarkerMassiv MarkerMassiv;
     private void OnTriggerEnter(Collider col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Player" && MarkerMassiv.i + 1 < MarkerMassiv.Markers.Length)
         {
             MarkerMassiv.Markers[MarkerMassiv.i + 1].SetActive(true);
             MarkerMassiv.i += 1;

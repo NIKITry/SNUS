@@ -26,7 +26,7 @@ public class Odejda_dly_geroy : MonoBehaviour
         
         for (i = 0; i < odejda.Length; i++)
         {
-            if (Physics.Raycast(ray, out hit, 50) && hit.collider.tag == "Odejda" ) 
+            if (Physics.Raycast(ray, out hit, 50) && hit.collider.tag == "123" ) 
             {
                 Knopka.SetActive(true);
 
@@ -43,11 +43,12 @@ public class Odejda_dly_geroy : MonoBehaviour
                 }
               
                
-                Debug.Log("WOOOW");
             }
             else
             {
                 Knopka.SetActive(false);
+                Achievements achievement = FindObjectOfType<Achievements>();
+                achievement.showAchieve("Получить \n одежду", 1);
             }
 
         }

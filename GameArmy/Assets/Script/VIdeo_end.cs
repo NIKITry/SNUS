@@ -22,9 +22,11 @@ public class VIdeo_end : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Room_KID.enter = false;
             i++;
+            Achievements achievement = FindObjectOfType<Achievements>();
+            achievement.showAchieve("Пройти \n инструктаж", 2);
         }
 
-        if (i != video_mass.Length - 1)
+        else
         {
             video_mass[i + 1].SetActive(true);
             video_mass[i].SetActive(false);
