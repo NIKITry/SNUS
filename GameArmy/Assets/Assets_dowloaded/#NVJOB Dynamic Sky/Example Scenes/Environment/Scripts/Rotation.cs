@@ -14,6 +14,6 @@ public class Rotation : MonoBehaviour
     public void Update()
     {
 
-        gameobj.angularVelocity = new Vector3(1, 1, 1) * speed;
+        gameobj.angularVelocity = new Vector3(0, 1, 0) * speed;
     }
 }

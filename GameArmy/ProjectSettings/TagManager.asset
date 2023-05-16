@@ -12,6 +12,8 @@ TagManager:
   - weapon
   - Odejda
   - Marker
+  - TestButton
+  - CameraFly
   layers:
   - Default
   - TransparentFX
