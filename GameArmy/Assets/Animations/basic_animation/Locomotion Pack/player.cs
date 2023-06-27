@@ -90,7 +90,10 @@ public class player : MonoBehaviour
                 playerAnim.ResetTrigger("run");
                 playerAnim.SetTrigger("walk");
             }
-        }
+        } else
+        {
+			w_speed = olw_speed;
+		}
     }
 
 	public bool isGrounded = true;
