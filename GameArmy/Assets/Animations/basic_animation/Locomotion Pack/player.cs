@@ -11,11 +11,20 @@ public class player : MonoBehaviour
 	public Transform playerTrans;
 	public float distToGround = 1f;
 
+	[SerializeField] float jumpForce = 200;
 
-	
+	Rigidbody rb;
+
+    private void Start()
+    {
+		rb = GetComponent<Rigidbody>();
+    }
+
+   
 
 
-	void FixedUpdate()
+
+    void FixedUpdate()
 	{
 		GroundCheck();
 		if (isGrounded && Input.GetKey(KeyCode.W))
@@ -38,9 +47,9 @@ public class player : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.W))
 		{
-			playerAnim.SetTrigger("walk");
 			playerAnim.ResetTrigger("idle");
-			walking = true;
+			playerAnim.SetTrigger("walk");
+            walking = true;
 			//steps1.SetActive(true);
 		}
 		if (Input.GetKeyUp(KeyCode.W))
@@ -79,8 +88,8 @@ public class player : MonoBehaviour
 				//steps1.SetActive(false);
 				//steps2.SetActive(true);
 				w_speed = w_speed + rn_speed;
-				playerAnim.SetTrigger("run");
 				playerAnim.ResetTrigger("walk");
+				playerAnim.SetTrigger("run");
 			}
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
@@ -94,16 +103,26 @@ public class player : MonoBehaviour
         {
 			w_speed = olw_speed;
 		}
-    }
+
+
+		if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+		{
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+		}
+	
+
+	}
 
 	public bool isGrounded = true;
 
 	void GroundCheck () {
 
-		if(Physics.Raycast(transform.position, Vector2.down, distToGround + 0.05f)) {
+		if(Physics.Raycast(transform.position, Vector3.down, distToGround + 0.05f)) {
 			isGrounded = true;
 		} else {
 			isGrounded = false;
 		}
 	}
+	
 }

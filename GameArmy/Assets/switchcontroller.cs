@@ -14,7 +14,7 @@ public class switchcontroller : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetKeyUp(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
 
             //switchDelay -= Time.deltaTime;
