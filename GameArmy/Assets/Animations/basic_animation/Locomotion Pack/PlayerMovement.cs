@@ -53,8 +53,29 @@ public class PlayerMovement : MonoBehaviour
             inputMagnitude *= 2;
         }
 
+        if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+        {
+            inputMagnitude *= 0.6f;
+        }
 
-        animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftControl))
+        {
+            animator.SetLayerWeight(1, 1);
+        }
+
+        // тут еще нужно создать условие для приветствия в кепке и без
+        // (если кепка надета, то правую руку приклаываем)
+        // может быть полезно для нахождения в помещении/на улице
+        animator.SetBool("IsInHat", true);
+
+        if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+
+
+            animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
 
         float speed = inputMagnitude * maximumSpeed;
         movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
