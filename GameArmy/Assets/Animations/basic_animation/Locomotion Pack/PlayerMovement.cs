@@ -74,8 +74,28 @@ public class PlayerMovement : MonoBehaviour
             animator.SetLayerWeight(1, 0);
         }
 
+        // целимся и стреляем
+        if (Input.GetMouseButton(1))
+        {
+            animator.SetBool("IsAiming", true);
+        }
+        else
+        {
+            animator.SetBool("IsAiming", false);
+        }
 
-            animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetBool("IsShooting", true);
+        }
+        else
+        {
+            animator.SetBool("IsShooting", false);
+        }
+
+
+
+        animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
 
         float speed = inputMagnitude * maximumSpeed;
         movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
@@ -177,4 +197,45 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
+
+    
+
+
+
+
+
+
+
+
+
+
+      public GameObject Cam1;
+      public GameObject Cam2;
+
+
+    void FixedUpdate()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            
+
+            //switchDelay -= Time.deltaTime;
+            //if (switchDelay <= 0)
+            //{
+            Cam1.SetActive(!Cam1.activeSelf);
+            Cam2.SetActive(!Cam2.activeSelf);
+
+            //    switchDelay = 0.12f;
+            //}
+
+        }
+    }
+
+
+
+
+
+
 }
+
