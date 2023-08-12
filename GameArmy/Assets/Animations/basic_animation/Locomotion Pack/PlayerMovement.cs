@@ -28,14 +28,45 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform debugTransform;
 
+    [SerializeField]
+    private Transform pfBulletProjectile;
+
+    [SerializeField]
+    private Transform spawnBulletPosition;
+
+    public float spread;
+    public float fireRate;
+    public ParticleSystem muzzleParticles;
+    public ParticleSystem sparkParticles;
+
+
+    public int minSparkEmission = 1;
+    public int maxSparkEmission = 7;
+
+    [Header("Muzzleflash Light Settings")]
+    public Light muzzleflashLight;
+    public float lightDuration = 0.02f;
+
+
     private Animator animator;
     private CharacterController characterController;
+    private IEnumerator MuzzleFlashLight()
+    {
+
+        muzzleflashLight.enabled = true;
+        yield return new WaitForSeconds(lightDuration);
+        muzzleflashLight.enabled = false;
+    }
+
+    private float lastFired = 1f;
+
     private float ySpeed;
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
     private bool isJumping;
     private bool isGrounded;
+    private bool allowInvoke = true;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -56,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            inputMagnitude *= 2;
+            inputMagnitude *= 2f;
         }
 
         if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
@@ -67,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftControl))
         {
-            animator.SetLayerWeight(1, 1);
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
         }
 
         // тут еще нужно создать условие для приветствия в кепке и без
@@ -77,13 +110,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.LeftControl))
         {
-            animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 80f));
         }
 
         // целимся и стреляем
         if (Input.GetMouseButton(1))
         {
             animator.SetBool("IsAiming", true);
+
         }
         else
         {
@@ -100,16 +134,63 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+
+
+        if (Input.GetMouseButton(1))
+        {
+            //СТРЕЛЬБА
+
+            Vector3 mouseWorldPosition = Vector3.zero;
+
+            Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            Ray ray = Camera.current.ScreenPointToRay(screenCenterPoint);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 9999f, aimColliderLayerMask))
             {
-            transform.position = raycastHit.point;
+                //debugTransform.transform.position = raycastHit.point;
+                mouseWorldPosition = raycastHit.point;
             }
 
+            Vector3 worldAimTarget = mouseWorldPosition;
+            worldAimTarget.y = transform.position.y;
+            Vector3 aimDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
 
 
-        animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
+            //Разброс
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread);
+
+            if (Input.GetMouseButton(0))
+            {
+                if (Time.time - lastFired > 1 / fireRate)
+                {
+                    lastFired = Time.time;
+                    Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized + new Vector3(x, y, 0);
+                    Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.forward));
+                    Instantiate(sparkParticles, spawnBulletPosition.transform.position, spawnBulletPosition.transform.rotation);
+                    muzzleParticles.Emit(1);
+                    //Light flash start
+                    StartCoroutine(MuzzleFlashLight());
+                    sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
+
+                }
+                    
+            }
+                
+                //
+
+                
+            
+
+
+        }
+
+
+
+
+
+
+            animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
 
         float speed = inputMagnitude * maximumSpeed;
         movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
@@ -163,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
+       
 
         if (movementDirection != Vector3.zero)
         {
@@ -188,6 +269,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+
 
     private void OnAnimatorMove()
     {
@@ -214,21 +297,17 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-
-
-
-
-
-
-
-
-
       public GameObject Cam1;
       public GameObject Cam2;
 
 
     void FixedUpdate()
     {
+
+        
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -251,5 +330,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-}
+
+    }
 

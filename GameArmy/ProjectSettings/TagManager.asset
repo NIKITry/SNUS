@@ -12,11 +12,12 @@ TagManager:
   - weapon
   - Odejda
   - Marker
+  - Camera_3rd_person_controller
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - target
   - Water
   - UI
   - 
