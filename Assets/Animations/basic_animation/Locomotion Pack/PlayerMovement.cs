@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float maximumSpeed;
+    [SerializeField] private float maximumSpeed;
 
-    [SerializeField]
-    private float rotationSpeed;
+    [SerializeField] private float rotationSpeed;
 
-    [SerializeField]
-    private float jumpSpeed;
+    [SerializeField] private float jumpSpeed;
 
-    [SerializeField]
-    private float jumpButtonGracePeriod;
+    [SerializeField] private float jumpButtonGracePeriod;
 
-    [SerializeField]
-    private float jumpHorizontalSpeed;
+    [SerializeField] private float jumpHorizontalSpeed;
 
-    [SerializeField]
-    private Transform cameraTransform;
+    [SerializeField] private Transform cameraTransform;
 
-    [SerializeField]
-    private LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
 
-    [SerializeField]
-    private Transform debugTransform;
+    [SerializeField] private Transform debugTransform;
 
-    [SerializeField]
-    private Transform pfBulletProjectile;
+    [SerializeField] private Transform pfBulletProjectile;
 
-    [SerializeField]
-    private Transform spawnBulletPosition;
+    [SerializeField] private Transform spawnBulletPosition;
 
     public float spread;
     public float fireRate;
@@ -43,16 +33,15 @@ public class PlayerMovement : MonoBehaviour
     public int minSparkEmission = 1;
     public int maxSparkEmission = 7;
 
-    [Header("Muzzleflash Light Settings")]
-    public Light muzzleflashLight;
+    [Header("Muzzleflash Light Settings")] public Light muzzleflashLight;
     public float lightDuration = 0.02f;
 
 
     private Animator animator;
     private CharacterController characterController;
+
     private IEnumerator MuzzleFlashLight()
     {
-
         muzzleflashLight.enabled = true;
         yield return new WaitForSeconds(lightDuration);
         muzzleflashLight.enabled = false;
@@ -79,8 +68,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -117,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             animator.SetBool("IsAiming", true);
-
         }
         else
         {
@@ -132,8 +118,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsShooting", false);
         }
-
-
 
 
         if (Input.GetMouseButton(1))
@@ -165,35 +149,26 @@ public class PlayerMovement : MonoBehaviour
                 if (Time.time - lastFired > 1 / fireRate)
                 {
                     lastFired = Time.time;
-                    Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized + new Vector3(x, y, 0);
-                    Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.forward));
-                    Instantiate(sparkParticles, spawnBulletPosition.transform.position, spawnBulletPosition.transform.rotation);
+                    Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized +
+                                     new Vector3(x, y, 0);
+                    Instantiate(pfBulletProjectile, spawnBulletPosition.position,
+                        Quaternion.LookRotation(aimDir, Vector3.forward));
+                    Instantiate(sparkParticles, spawnBulletPosition.transform.position,
+                        spawnBulletPosition.transform.rotation);
                     muzzleParticles.Emit(1);
                     //Light flash start
                     StartCoroutine(MuzzleFlashLight());
                     sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-
                 }
-                    
             }
-                
-                //
-
-                
-            
-
-
         }
 
 
-
-
-
-
-            animator.SetFloat("Input Magnitude", inputMagnitude/2, 0.05f, Time.deltaTime);
+        animator.SetFloat("Input Magnitude", inputMagnitude / 2, 0.05f, Time.deltaTime);
 
         float speed = inputMagnitude * maximumSpeed;
-        movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        movementDirection = Quaternion.AngleAxis(cameraTransform.rotation.eulerAngles.y, Vector3.up) *
+                            movementDirection;
         movementDirection.Normalize();
 
         Vector3 velocity = movementDirection * speed;
@@ -244,7 +219,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-       
 
         if (movementDirection != Vector3.zero)
         {
@@ -252,7 +226,8 @@ public class PlayerMovement : MonoBehaviour
 
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         else
         {
@@ -266,10 +241,7 @@ public class PlayerMovement : MonoBehaviour
 
         //    characterController.Move(velocity * Time.deltaTime);
         //}
-
-
     }
-
 
 
     private void OnAnimatorMove()
@@ -295,24 +267,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
 
-      public GameObject Cam1;
-      public GameObject Cam2;
+    public GameObject Cam1;
+    public GameObject Cam2;
 
 
     void FixedUpdate()
     {
-
-        
-
-
-
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            
-
             //switchDelay -= Time.deltaTime;
             //if (switchDelay <= 0)
             //{
@@ -321,15 +284,6 @@ public class PlayerMovement : MonoBehaviour
 
             //    switchDelay = 0.12f;
             //}
-
         }
     }
-
-
-
-
-
-
-
-    }
-
+}
